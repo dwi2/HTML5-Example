@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>    
+    <title>Form in HTML5</title>
+    <script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+    <script type="text/javascript">
+      $(document).bind('autofocus_ready', function() {
+        if (!('autofocus' in document.createElement('input'))) {
+          $('input#user_email').focus();
+	}		    
+      });
+    </script>
+  <head>
+  <body>
+    <article>
+      <h1>Form in HTML5</h1>
+	<form id="html5_form">
+	  <p>
+            placeholder: <input id="q" placeholder="type something here"/>
+	  </p>
+	  <p>
+	  email: <input id="user_email" type="email" autofocus/> is no different than &lt;input type="text"&gt; on PC
+	    <script type="text/javascript">
+	      $(document).trigger('autofocus_ready');
+	    </script>	    
+	  </p>
+	  <p>
+            web address: <input id="web_address" type="url"/> is no different than &lt;input type="text"&gt; on PC
+	  </p>
+	  <p>
+	  </p>
+	  <p>
+	  </p>
+	  <p>
+	  </p>
+	  <p>
+	    <input type="submit" value="Send"/>
+	  </p>
+	</form>
+    </article>
+    <article>
+      <form id="search_form">
+        <p><input type="search"/> <input type="submit" value="Go"/></p>
+      </form>
+    </article>
+    <article>
+      <img src="Jan_Vermeer_van_Delft_001.jpg" alt="View of Delft" width="50%" height="50%" />
+    </article>
+  </body>	    
+</html>
