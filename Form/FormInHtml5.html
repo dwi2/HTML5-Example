@@ -3,49 +3,110 @@
   <head>
     <meta charset="utf-8"/>    
     <title>Form in HTML5</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+      }
+      .gray-bg-field {
+        background-color: #F5F5DC;
+        padding: 5px;
+        border-color: #5C3317;
+        border: solid 2px;
+        margin: 3px;
+        font-weight: bold;
+      }
+      .fixed-div {
+        width: 600px;
+        height: 450px;
+        padding: 5px;
+        border-color: #5C3317;
+        border: solid 2px;
+      }
+    </style>
     <script type="text/javascript" src="jquery-1.5.1.min.js"></script>
     <script type="text/javascript">
       $(document).bind('autofocus_ready', function() {
         if (!('autofocus' in document.createElement('input'))) {
           $('input#user_email').focus();
-	}		    
+	    }
       });
+      $('img#vermeer').ready(function() {
+        var width = $('img#vermeer').width();
+        var height = $('img#vermeer').height();
+        $('input#zoom-slider').bind('change input', function() {
+          var percentage = this.value;
+          zoom_image(percentage);
+        });
+        $('input#zoom-spinbox').bind('change input', function() {
+          var percentage = this.value;
+          zoom_image(percentage);
+        });
+      });
+      function zoom_image(percentage) {
+        if (percentage > 80) percentage = 80;
+        if (percentage < 10) percentage = 10;
+        $('img#vermeer').css('width', percentage+'%');
+        $('img#vermeer').css('height', percentage+'%');
+      }
     </script>
   <head>
   <body>
     <article>
       <h1>Form in HTML5</h1>
-	<form id="html5_form">
-	  <p>
-            placeholder: <input id="q" placeholder="type something here"/>
-	  </p>
-	  <p>
-	  email: <input id="user_email" type="email" autofocus/> is no different than &lt;input type="text"&gt; on PC
-	    <script type="text/javascript">
-	      $(document).trigger('autofocus_ready');
-	    </script>	    
-	  </p>
-	  <p>
-            web address: <input id="web_address" type="url"/> is no different than &lt;input type="text"&gt; on PC
-	  </p>
-	  <p>
-	  </p>
-	  <p>
-	  </p>
-	  <p>
-	  </p>
-	  <p>
-	    <input type="submit" value="Send"/>
-	  </p>
-	</form>
-    </article>
-    <article>
-      <form id="search_form">
-        <p><input type="search"/> <input type="submit" value="Go"/></p>
+      <form id="html5_form">
+        <p>
+          <span class="gray-bg-field">
+            placeholder: <input id="q" placeholder="search keyword" type="search"/>
+          </span>
+        </p>
+        <p>
+        <span class="gray-bg-field">
+          email: <input id="user_email" type="email" autofocus/> is no different than &lt;input type="text"&gt; on PC
+          <script type="text/javascript">
+            $(document).trigger('autofocus_ready');
+          </script>
+        </span>
+        <span class="gray-bg-field">
+          web address: <input id="web_address" type="url"/> is no different than &lt;input type="text"&gt; on PC
+        </span>
+        </p>
+        <p>
+          <span class="gray-bg-field">
+            use the slider to zoom in/out the image below: <input id="zoom-spinbox" type="number" min="10" max="80" step="2" value="50">        
+          </span>
+          <span class="gray-bg-field">
+            use the slider to zoom in/out the image below: <input id="zoom-slider" type="range" min="10" max="80" step="2" value="50"/>
+          </span>
+        </p>
+        <p>
+          <span class="gray-bg-field">
+            date: <input type="date"/>
+          </span>
+          <span class="gray-bg-field">
+            month: <input type="month"/>
+          </span>
+          <span class="gray-bg-field">
+            time: <input type="time"/>
+          </span>
+          <span class="gray-bg-field">
+            datetime: <input type="datetime"/>
+          </span>
+        </p>
+        <p>
+          <span class="gray-bg-field">
+            color: <input type="color"/>
+          </span>
+        </p>
+        <p>
+          <input type="submit" value="Send"/>
+        </p>
       </form>
     </article>
     <article>
-      <img src="Jan_Vermeer_van_Delft_001.jpg" alt="View of Delft" width="50%" height="50%" />
+      <div class="fixed-div">
+        <img id="vermeer" src="Jan_Vermeer_van_Delft_001.jpg" alt="View of Delft" width="50%" height="50%"/>
+      </div>
     </article>
   </body>	    
 </html>
